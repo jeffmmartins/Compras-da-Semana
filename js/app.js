@@ -21,9 +21,12 @@ frm.inAdicionar.addEventListener("click", (e) => {
   let resultado = ''
   for(let i = 0 ; i < lista.length; i++) {
     resultado += lista[i] + "\n"
+    inProduto.focus()                                 //posiciona o cursor no input produto
+    inProduto.value = ""                              //limpa campos do input produto
   }
 
   resp.innerText = "Produtos Adicionados:\n" + "-".repeat(20) + "\n" + resultado
+  
 })
 
 //remove o conteudo da lista

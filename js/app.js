@@ -14,18 +14,7 @@ frm.inAdicionar.addEventListener("click", (e) => {
     localStorage.setItem("nomeProduto",produto)      // salva sem  ";"
   }
 
-  //obtém os dados aramazenados, separando em elementos de vetor 
-  const lista = localStorage.getItem("nomeProduto").split(";") 
-  lista.sort()                                       // ordena em ordem alfabética
-  
-  let resultado = ''
-  for(let i = 0 ; i < lista.length; i++) {
-    resultado += lista[i] + "\n"
-    inProduto.focus()                                 //posiciona o cursor no input produto
-    inProduto.value = ""                              //limpa campos do input produto
-  }
-
-  resp.innerText = "Produtos Adicionados:\n" + "-".repeat(20) + "\n" + resultado
+  listar()
   
 })
 
@@ -33,3 +22,20 @@ frm.inAdicionar.addEventListener("click", (e) => {
 frm.inLimpar.addEventListener("click", () => {
  localStorage.removeItem("nomeProduto")             // remove as variavéis salvas 
 })
+
+const listar = () => {
+  
+  //obtém os dados aramazenados, separando em elementos de vetor 
+  const lista = localStorage.getItem("nomeProduto").split(";") 
+  lista.sort()                                       // ordena em ordem alfabética
+  
+  let resultado = ''
+  for(let i = 0 ; i < lista.length; i++) {
+    resultado += lista[i] + "\n"
+  }
+  
+  resp.innerText = "Produtos Adicionados:\n" + "-".repeat(20) + "\n" + resultado
+  frm.inProduto.value = ""
+  frm.inProduto.focus()
+}
+window.addEventListener("load",listar)
